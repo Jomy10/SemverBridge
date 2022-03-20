@@ -3,3 +3,4 @@
 .vscode
 .swiftpm
 .xcode
+.build
