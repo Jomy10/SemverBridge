@@ -100,6 +100,30 @@ void* __swift_bridge__$Vec__VersionReqResult$get_mut(void* vec_ptr, uintptr_t in
 uintptr_t __swift_bridge__$Vec__VersionReqResult$len(void* vec_ptr);
 void* __swift_bridge__$Vec__VersionReqResult$as_ptr(void* vec_ptr);
 
+typedef struct Comparator Comparator;
+void __swift_bridge__$Comparator$_free(void* self);
+
+void* __swift_bridge__$Vec_Comparator$new(void);
+void __swift_bridge__$Vec_Comparator$drop(void* vec_ptr);
+void __swift_bridge__$Vec_Comparator$push(void* vec_ptr, void* item_ptr);
+void* __swift_bridge__$Vec_Comparator$pop(void* vec_ptr);
+void* __swift_bridge__$Vec_Comparator$get(void* vec_ptr, uintptr_t index);
+void* __swift_bridge__$Vec_Comparator$get_mut(void* vec_ptr, uintptr_t index);
+uintptr_t __swift_bridge__$Vec_Comparator$len(void* vec_ptr);
+void* __swift_bridge__$Vec_Comparator$as_ptr(void* vec_ptr);
+
+typedef struct _ComparatorResult _ComparatorResult;
+void __swift_bridge__$_ComparatorResult$_free(void* self);
+
+void* __swift_bridge__$Vec__ComparatorResult$new(void);
+void __swift_bridge__$Vec__ComparatorResult$drop(void* vec_ptr);
+void __swift_bridge__$Vec__ComparatorResult$push(void* vec_ptr, void* item_ptr);
+void* __swift_bridge__$Vec__ComparatorResult$pop(void* vec_ptr);
+void* __swift_bridge__$Vec__ComparatorResult$get(void* vec_ptr, uintptr_t index);
+void* __swift_bridge__$Vec__ComparatorResult$get_mut(void* vec_ptr, uintptr_t index);
+uintptr_t __swift_bridge__$Vec__ComparatorResult$len(void* vec_ptr);
+void* __swift_bridge__$Vec__ComparatorResult$as_ptr(void* vec_ptr);
+
 void* __swift_bridge__$Error$to_string(void* self);
 bool __swift_bridge__$_VersionResult$is_err(void* self);
 bool __swift_bridge__$_VersionResult$is_ok(void* self);
@@ -142,5 +166,21 @@ void* __swift_bridge__$version_req_mut_to_owned(void* refer);
 void* __swift_bridge__$_VersionReqResult$get_version(void* self);
 struct RustStr __swift_bridge__$_VersionReqResult$get_error_unsafe(void* self);
 bool __swift_bridge__$_VersionReqResult$is_err(void* self);
+struct __swift_bridge__$Operator __swift_bridge__$Comparator$getOperator(void* self);
+void __swift_bridge__$Comparator$setOperator(void* self, struct __swift_bridge__$Operator op);
+uint64_t __swift_bridge__$Comparator$getMajor(void* self);
+void __swift_bridge__$Comparator$setMajor(void* self, uint64_t new_val);
+struct __private__OptionU64 __swift_bridge__$Comparator$getMinor(void* self);
+void __swift_bridge__$Comparator$setMinor(void* self, struct __private__OptionU64 new_val);
+struct __private__OptionU64 __swift_bridge__$Comparator$getPatch(void* self);
+void __swift_bridge__$Comparator$setPatch(void* self, struct __private__OptionU64 new_val);
+void* __swift_bridge__$Comparator$getPre(void* self);
+void __swift_bridge__$Comparator$setPre(void* self, void* new_val);
+void* __swift_bridge__$Comparator$toRustString(void* self);
+bool __swift_bridge__$_ComparatorResult$is_ok(void* self);
+void* __swift_bridge__$_ComparatorResult$unwrap_unsafe(void* self);
+void* __swift_bridge__$_ComparatorResult$unwrap_err_unsafe(void* self);
+bool __swift_bridge__$comparator_matches(void* comp, void* version);
+void* __swift_bridge__$parse_comparator(struct RustStr text);
 
 

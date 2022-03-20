@@ -1,0 +1,4 @@
+module SemverBridge {
+    header "/Users/jonaseveraert/Documents/projects/semver-swift/SemverSwiftBridge/.build/x86_64-apple-macosx/debug/SemverBridge.build/SemverBridge-Swift.h"
+    requires objc
+}

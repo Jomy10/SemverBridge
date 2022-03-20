@@ -27,6 +27,14 @@ public func version_req_to_string(_ req: VersionReqRef) -> RustString {
 public func version_req_mut_to_owned(_ refer: VersionReqRefMut) -> VersionReq {
     VersionReq(ptr: __swift_bridge__$version_req_mut_to_owned(refer.ptr))
 }
+public func comparator_matches(_ comp: ComparatorRef, _ version: _VersionRef) -> Bool {
+    __swift_bridge__$comparator_matches(comp.ptr, version.ptr)
+}
+public func parse_comparator<GenericToRustStr: ToRustStr>(_ text: GenericToRustStr) -> _ComparatorResult {
+    return text.toRustStr({ textAsRustStr in
+        _ComparatorResult(ptr: __swift_bridge__$parse_comparator(textAsRustStr))
+    })
+}
 
 public class Error: ErrorRefMut {
     var isOwned: Bool = true
@@ -816,6 +824,207 @@ extension _VersionReqResult: Vectorizable {
 
     public static func vecOfSelfLen(vecPtr: UnsafeMutableRawPointer) -> UInt {
         __swift_bridge__$Vec__VersionReqResult$len(vecPtr)
+    }
+}
+
+
+public class Comparator: ComparatorRefMut {
+    var isOwned: Bool = true
+
+    public override init(ptr: UnsafeMutableRawPointer) {
+        super.init(ptr: ptr)
+    }
+
+    deinit {
+        if isOwned {
+            __swift_bridge__$Comparator$_free(ptr)
+        }
+    }
+}
+public class ComparatorRefMut: ComparatorRef {
+    public override init(ptr: UnsafeMutableRawPointer) {
+        super.init(ptr: ptr)
+    }
+}
+extension ComparatorRefMut {
+    public func setOperator(_ op: Operator) {
+        __swift_bridge__$Comparator$setOperator(ptr, op.intoFfiRepr())
+    }
+
+    public func setMajor(_ new_val: UInt64) {
+        __swift_bridge__$Comparator$setMajor(ptr, new_val)
+    }
+
+    public func setMinor(_ new_val: Optional<UInt64>) {
+        __swift_bridge__$Comparator$setMinor(ptr, { let val = new_val; return __private__OptionU64(val: val ?? 123, is_some: val != nil); }())
+    }
+
+    public func setPatch(_ new_val: Optional<UInt64>) {
+        __swift_bridge__$Comparator$setPatch(ptr, { let val = new_val; return __private__OptionU64(val: val ?? 123, is_some: val != nil); }())
+    }
+
+    public func setPre(_ new_val: Prerelease) {
+        __swift_bridge__$Comparator$setPre(ptr, {new_val.isOwned = false; return new_val.ptr;}())
+    }
+}
+public class ComparatorRef {
+    var ptr: UnsafeMutableRawPointer
+
+    public init(ptr: UnsafeMutableRawPointer) {
+        self.ptr = ptr
+    }
+}
+extension ComparatorRef {
+    public func getOperator() -> Operator {
+        __swift_bridge__$Comparator$getOperator(ptr).intoSwiftRepr()
+    }
+
+    public func getMajor() -> UInt64 {
+        __swift_bridge__$Comparator$getMajor(ptr)
+    }
+
+    public func getMinor() -> Optional<UInt64> {
+        { let val = __swift_bridge__$Comparator$getMinor(ptr); if val.is_some { return val.val } else { return nil } }()
+    }
+
+    public func getPatch() -> Optional<UInt64> {
+        { let val = __swift_bridge__$Comparator$getPatch(ptr); if val.is_some { return val.val } else { return nil } }()
+    }
+
+    public func getPre() -> Prerelease {
+        Prerelease(ptr: __swift_bridge__$Comparator$getPre(ptr))
+    }
+
+    public func toRustString() -> RustString {
+        RustString(ptr: __swift_bridge__$Comparator$toRustString(ptr))
+    }
+}
+extension Comparator: Vectorizable {
+    public static func vecOfSelfNew() -> UnsafeMutableRawPointer {
+        __swift_bridge__$Vec_Comparator$new()
+    }
+
+    public static func vecOfSelfFree(vecPtr: UnsafeMutableRawPointer) {
+        __swift_bridge__$Vec_Comparator$drop(vecPtr)
+    }
+
+    public static func vecOfSelfPush(vecPtr: UnsafeMutableRawPointer, value: Comparator) {
+        __swift_bridge__$Vec_Comparator$push(vecPtr, {value.isOwned = false; return value.ptr;}())
+    }
+
+    public static func vecOfSelfPop(vecPtr: UnsafeMutableRawPointer) -> Optional<Self> {
+        let pointer = __swift_bridge__$Vec_Comparator$pop(vecPtr)
+        if pointer == nil {
+            return nil
+        } else {
+            return (Comparator(ptr: pointer!) as! Self)
+        }
+    }
+
+    public static func vecOfSelfGet(vecPtr: UnsafeMutableRawPointer, index: UInt) -> Optional<ComparatorRef> {
+        let pointer = __swift_bridge__$Vec_Comparator$get(vecPtr, index)
+        if pointer == nil {
+            return nil
+        } else {
+            return ComparatorRef(ptr: pointer!)
+        }
+    }
+
+    public static func vecOfSelfGetMut(vecPtr: UnsafeMutableRawPointer, index: UInt) -> Optional<ComparatorRefMut> {
+        let pointer = __swift_bridge__$Vec_Comparator$get_mut(vecPtr, index)
+        if pointer == nil {
+            return nil
+        } else {
+            return ComparatorRefMut(ptr: pointer!)
+        }
+    }
+
+    public static func vecOfSelfLen(vecPtr: UnsafeMutableRawPointer) -> UInt {
+        __swift_bridge__$Vec_Comparator$len(vecPtr)
+    }
+}
+
+
+public class _ComparatorResult: _ComparatorResultRefMut {
+    var isOwned: Bool = true
+
+    public override init(ptr: UnsafeMutableRawPointer) {
+        super.init(ptr: ptr)
+    }
+
+    deinit {
+        if isOwned {
+            __swift_bridge__$_ComparatorResult$_free(ptr)
+        }
+    }
+}
+public class _ComparatorResultRefMut: _ComparatorResultRef {
+    public override init(ptr: UnsafeMutableRawPointer) {
+        super.init(ptr: ptr)
+    }
+}
+public class _ComparatorResultRef {
+    var ptr: UnsafeMutableRawPointer
+
+    public init(ptr: UnsafeMutableRawPointer) {
+        self.ptr = ptr
+    }
+}
+extension _ComparatorResultRef {
+    public func is_ok() -> Bool {
+        __swift_bridge__$_ComparatorResult$is_ok(ptr)
+    }
+
+    public func unwrap_unsafe() -> Comparator {
+        Comparator(ptr: __swift_bridge__$_ComparatorResult$unwrap_unsafe(ptr))
+    }
+
+    public func unwrap_err_unsafe() -> RustString {
+        RustString(ptr: __swift_bridge__$_ComparatorResult$unwrap_err_unsafe(ptr))
+    }
+}
+extension _ComparatorResult: Vectorizable {
+    public static func vecOfSelfNew() -> UnsafeMutableRawPointer {
+        __swift_bridge__$Vec__ComparatorResult$new()
+    }
+
+    public static func vecOfSelfFree(vecPtr: UnsafeMutableRawPointer) {
+        __swift_bridge__$Vec__ComparatorResult$drop(vecPtr)
+    }
+
+    public static func vecOfSelfPush(vecPtr: UnsafeMutableRawPointer, value: _ComparatorResult) {
+        __swift_bridge__$Vec__ComparatorResult$push(vecPtr, {value.isOwned = false; return value.ptr;}())
+    }
+
+    public static func vecOfSelfPop(vecPtr: UnsafeMutableRawPointer) -> Optional<Self> {
+        let pointer = __swift_bridge__$Vec__ComparatorResult$pop(vecPtr)
+        if pointer == nil {
+            return nil
+        } else {
+            return (_ComparatorResult(ptr: pointer!) as! Self)
+        }
+    }
+
+    public static func vecOfSelfGet(vecPtr: UnsafeMutableRawPointer, index: UInt) -> Optional<_ComparatorResultRef> {
+        let pointer = __swift_bridge__$Vec__ComparatorResult$get(vecPtr, index)
+        if pointer == nil {
+            return nil
+        } else {
+            return _ComparatorResultRef(ptr: pointer!)
+        }
+    }
+
+    public static func vecOfSelfGetMut(vecPtr: UnsafeMutableRawPointer, index: UInt) -> Optional<_ComparatorResultRefMut> {
+        let pointer = __swift_bridge__$Vec__ComparatorResult$get_mut(vecPtr, index)
+        if pointer == nil {
+            return nil
+        } else {
+            return _ComparatorResultRefMut(ptr: pointer!)
+        }
+    }
+
+    public static func vecOfSelfLen(vecPtr: UnsafeMutableRawPointer) -> UInt {
+        __swift_bridge__$Vec__ComparatorResult$len(vecPtr)
     }
 }
 
